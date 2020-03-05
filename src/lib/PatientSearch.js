@@ -812,6 +812,12 @@ export default class PatientSearch
             }
         };
 
+        // the base url of paginated search results is not {base}/Patient/_search. It is simply {base}!
+        if (server.type == "R4" && data.includes("_getpages")) {
+            options.url = `${server.url}`,
+            options.method = "GET"
+        }
+
         return this.getPatientIDs(server)
         .then(ids => {
             if (ids.length) {

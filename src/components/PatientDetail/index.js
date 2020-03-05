@@ -31,6 +31,7 @@ import {
     getAllPages
 } from "../../lib"
 import "./PatientDetail.less"
+import DeviceList from "../Fhir/DeviceList"
 
 /**
  * Renders the detail page.
@@ -354,6 +355,8 @@ export class PatientDetail extends React.Component
             return <Encounter resources={items}/>;
         case "CarePlan":
             return <CarePlan resources={items}/>;
+        case "Device":
+            return <DeviceList resources={items}/>;
         case "Patient":
         case "Practitioner":
         case "RelatedPerson":
