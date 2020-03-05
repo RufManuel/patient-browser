@@ -51,33 +51,39 @@ export class DeviceGrid extends React.Component
         }
 
         return (
-            <tr
-                key={i}
-                onClick={ () => window.open(url, "_blank") }
-                style={{ cursor: "pointer" }}
-            >
-                {
-                    this.props.cols.map((col, i) => {
-                        let { render, path, cellProps, defaultValue } = col
-                        cellProps = { ...cellProps, key: i }
-                        if (typeof render == "function") {
+            <tbody>
+                <tr
+                    key={i}
+                    onClick={ () => window.open(url, "_blank") }
+                    style={{ cursor: "pointer" }}
+                    className="curtain"
+                >
+                    {
+                        this.props.cols.map((col, i) => {
+                            let { render, path, cellProps, defaultValue } = col
+                            cellProps = { ...cellProps, key: i }
+                            if (typeof render == "function") {
+                                return (
+                                    <td {...cellProps}>
+                                        { render(res) }
+                                    </td>
+                                )
+                            }
                             return (
                                 <td {...cellProps}>
-                                    { render(res) }
+                                    {
+                                        getPath(res, path) ||
+                                        <small className="text-muted">{ defaultValue || "-" }</small>
+                                    }
                                 </td>
                             )
-                        }
-                        return (
-                            <td {...cellProps}>
-                                {
-                                    getPath(res, path) ||
-                                    <small className="text-muted">{ defaultValue || "-" }</small>
-                                }
-                            </td>
-                        )
-                    })
-                }
-            </tr>
+                        })
+                    }
+                    <td className="right-panel">
+                        Foo
+                    </td>
+                </tr>
+            </tbody>
         )
     }
 
@@ -171,9 +177,7 @@ export class DeviceGrid extends React.Component
                                 }
                             </tr>
                         </thead>
-                        <tbody>
-                            { this.renderRows() }
-                        </tbody>
+                        { this.renderRows() }
                     </table>
                 </div>
             </div>

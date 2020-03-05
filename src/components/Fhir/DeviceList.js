@@ -47,7 +47,7 @@ export default class DeviceList extends React.Component
                                 }
                             }
                             return (
-                                <div className="box1">
+                                <div>
                                     <b>{ name }</b>
                                     <small className="text-muted pull-right">
                                         { code } {system}
