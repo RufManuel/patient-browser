@@ -5,6 +5,7 @@ const Webpack              = require("webpack");
 const Package              = require("./package.json");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebpackPlugin    = require('html-webpack-plugin');
+const TerserPlugin         = require('terser-webpack-plugin');
 
 const ENV  = process.env.NODE_ENV || "production";
 const SRC  = Path.join(__dirname, "src");
@@ -14,7 +15,14 @@ const HOST = process.env.HOST || "0.0.0.0";
 
 let config = {
 
+    mode: ENV,
+
     context: SRC,
+
+    optimization: {
+    	minimize:   true,
+        minimizer:  [new TerserPlugin()],
+    },
 
     entry: {
         index : [
@@ -83,11 +91,6 @@ let config = {
         new Webpack.DefinePlugin({
             "process.env.NODE_ENV": "'" + ENV + "'",
             "__APP_VERSION__" : "'" + Package.version + "'"
-        }),
-        new Webpack.optimize.CommonsChunkPlugin({
-            name     : "vendor",
-            filename : "commons.js",
-            minChunks: 2
         }),
         new HtmlWebpackPlugin({
             filename: DST + "/index.html",
@@ -167,7 +170,7 @@ if (ENV == "development") {
         test   : /\.jsx?$/,
         include: [ SRC ],
         // exclude: [/node_modules/],
-        use    : [ "react-hot-loader", "babel-loader" ]
+        use    : [ "babel-loader" ]
     });
 
     config.plugins.push(
@@ -189,9 +192,6 @@ if (ENV == "development") {
 
 else if (ENV == "production") {
     config.plugins.push(
-        new Webpack.optimize.UglifyJsPlugin({
-            sourceMap: true
-        }),
         new BundleAnalyzerPlugin({
             analyzerMode: "static",
             openAnalyzer: false

@@ -5,6 +5,7 @@ import { Provider }  from "react-redux"
 import STORE         from "./redux"
 import PatientDetail from "./components/PatientDetail"
 import PatientList   from "./components/PatientList"
+import DeviceDetail  from "./components/DeviceDetail"
 import { Router, Route, Switch } from "react-router"
 import createHistory from "history/createHashHistory"
 import jQuery    from "jquery"
@@ -20,6 +21,7 @@ ReactDOM.render(
                 <App>
                     <Route path="/"             component={PatientList} exact/>
                     <Route path="/patient/:id"  component={PatientDetail}/>
+                    <Route path="/device/:id"   component={DeviceDetail}/>
                 </App>
             </Switch>
         </Router>

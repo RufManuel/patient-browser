@@ -2,6 +2,7 @@ import React       from "react"
 import PropTypes   from "prop-types"
 import { getPath } from "../../../lib"
 import { connect } from "react-redux"
+import { Link }    from "react-router-dom"
 
 /**
  * Renders group of resources in a grid (table) where each component represents
@@ -51,7 +52,9 @@ export class DeviceGrid extends React.Component
         }
 
         return (
-            <tbody>
+            <Link
+                to={ `/device/${res.id}` }
+            >
                 <tr
                     key={i}
                     onClick={ () => window.open(url, "_blank") }
@@ -102,7 +105,7 @@ export class DeviceGrid extends React.Component
                         </div>
                     </td>
                 </tr>
-            </tbody>
+            </Link>
         )
     }
 
