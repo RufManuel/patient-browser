@@ -1,7 +1,7 @@
 {
     server: {
         type: "R4",
-        url: "http://localhost:8082/hapi-fhir-jpaserver/fhir",
+        url: "http://localhost:8080/hapi-fhir-jpaserver/fhir",
         conditions: {
             "5602001": {
                 description: "Opioid abuse (disorder)",

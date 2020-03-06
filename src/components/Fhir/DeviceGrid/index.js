@@ -80,7 +80,26 @@ export class DeviceGrid extends React.Component
                         })
                     }
                     <td className="right-panel">
-                        Foo
+                        <div style={{
+                            padding: "0px 0px"
+                        }}>
+                            <button
+                                type="button"
+                                className={`button-panel button-fill button-info`}
+                            >
+                                {
+                                    "Device Info"
+                                }
+                            </button>
+                            <button
+                                type="button"
+                                className={`button-panel button-fill button-danger`}
+                            >
+                                {
+                                    "Remove Device"
+                                }
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -160,7 +179,8 @@ export class DeviceGrid extends React.Component
                 }
                 <div className="table-responsive">
                     <table className="table table-condensed table-hover table-striped table-bordered" style={{
-                        minWidth: this.props.cols.length * 200
+                        minWidth: this.props.cols.length * 200,
+                        overflow: "hidden"
                     }}>
                         <thead>
                             <tr>

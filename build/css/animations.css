@@ -33,15 +33,59 @@ body{background-color:#f1f1f2}
 
 .right-panel {
         position: absolute;
-        background: rgba(255,0,0,1);
+        background: rgba(255,255,255,1);
+        border: 1px solid #000; 
         text-align: center;
-        left: -100px;
+        right: -250px;
         height: 100%;
-        width: 100px;
+        width: 250px;
         transition: all 0.5s ease-out;
         z-index: 2;
+        padding: 0px;
 }
 
-.curtain:hover .right-panel{
-        transform: translateX(100px);
+.curtain:hover .right-panel {
+        transform: translateX(-250px);
+}
+
+.button-panel {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+}
+
+.button-fill {
+        height: 100%;
+        padding: 0px 0px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+}
+
+.button-info {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+}
+
+.button-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
 }
