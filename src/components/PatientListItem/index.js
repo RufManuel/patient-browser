@@ -38,7 +38,7 @@ export default class PatientListItem extends React.Component
 
         return (
             <Link
-                to={ "/patient/" + this.props.index }
+                to={ "/patient/" + this.props.patient.id }
                 className={ "patient" + ( this.props.selected ? " selected" : "") }
             >
                 <div

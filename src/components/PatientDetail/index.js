@@ -66,25 +66,20 @@ export class PatientDetail extends React.Component
 
     componentDidMount()
     {
-        this.fetch(this.props.match.params.index);
+        this.fetch(this.props.match.params.id);
     }
 
     componentWillReceiveProps(newProps)
     {
-        if (newProps.match.params.index !== this.props.match.params.index) {
-            this.fetch(newProps.match.params.index);
+        if (newProps.match.params.id !== this.props.match.params.id) {
+            this.fetch(newProps.match.params.id);
         }
     }
 
-    fetch(index)
+    fetch(id)
     {
-        index = intVal(index, -1);
-        if (index < 0) {
-            return this.setState({ error: new Error("Invalid patient index") });
-        }
-
-        this.setState({ loading: true, index }, () => {
-            this.fetchPatient(this.props.settings.server, index)
+        this.setState({ loading: true, id }, () => {
+            this.fetchPatient(this.props.settings.server, id)
             .then(
                 state => {
                     // console.log(state);
@@ -126,8 +121,9 @@ export class PatientDetail extends React.Component
 
         // Run the main query to fetch the first page
         .then(state => {
-            this.query.cacheId = null;
-            this.query.offset  = null;
+            this.query.reset()
+            this.query.setParam("_id", index)
+            this.query.schedule({ "_id": index })
             return this.query.fetch(server).then(
                 bundle => {
                     state.bundle = bundle;

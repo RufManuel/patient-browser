@@ -88,7 +88,6 @@ export class PatientList extends React.Component
             <PatientListItem
                 { ...o.resource }
                 patient={ o.resource }
-                key={ o.resource.id }
                 index={ offset + i }
                 selected={ isSelected(o) }
                 onSelectionChange={ patient => {

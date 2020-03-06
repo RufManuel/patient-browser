@@ -18,8 +18,8 @@ ReactDOM.render(
         <Router history={history}>
             <Switch>
                 <App>
-                    <Route path="/"               component={PatientList} exact/>
-                    <Route path="/patient/:index" component={PatientDetail}/>
+                    <Route path="/"             component={PatientList} exact/>
+                    <Route path="/patient/:id"  component={PatientDetail}/>
                 </App>
             </Switch>
         </Router>

@@ -447,7 +447,7 @@ export default class PatientSearch
     compile(encode=true) {
         let params = [];
 
-        [
+        [   "_id",
             // conditions
             "minAge",
             "maxAge",
@@ -460,8 +460,8 @@ export default class PatientSearch
             "sort"//,
             // tags
         ].forEach(prop => {
-            if (this.__scheduled__.hasOwnProperty(prop)) {
-                this[prop] = this.__scheduled__[prop];
+            if (this.__scheduled__.hasOwnProperty(prop) && this.__scheduled__[prop]) {
+                this.params[prop] = this.__scheduled__[prop];
                 delete this.__scheduled__[prop];
             }
         })
